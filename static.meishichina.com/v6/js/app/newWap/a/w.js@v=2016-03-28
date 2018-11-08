@@ -1,0 +1,24 @@
+(function($){$.fn.scrollLoading=function(options){var defaults={attr:"data-src",container:$(window),callback:$.noop};var params=$.extend({},defaults,options||{});params.cache=[];$(this).each(function(){var node=this.nodeName.toLowerCase(),url=$(this).attr(params["attr"]);var data={obj:$(this),tag:node,url:url};params.cache.push(data)});var callback=function(call){if($.isFunction(params.callback)){params.callback.call(call.get(0))}};var loading=function(){var contHeight=params.container.height();if($(window).get(0)===window){contop=$(window).scrollTop()}else{contop=params.container.offset().top}$.each(params.cache,function(i,data){var o=data.obj,tag=data.tag,url=data.url,post,posb;if(o){post=o.offset().top-contop,post+o.height();if((post>=0&&post<contHeight)||(posb>0&&posb<=contHeight)){if(url){if(tag==="img"){callback(o.hide().attr("src",url).fadeIn(600))}else{o.load(url,{},function(){callback(o)})}}else{callback(o)}data.obj=null}}})};loading();params.container.bind("scroll",loading)}})(jQuery);
+$("img.imgLoad").scrollLoading();
+$(".header_more").toggle(function(){$("#popnav").show()},function(){$("#popnav").hide()});
+$("#popnav .close").click(function(){$(".header_more").click();});
+$(window).scroll(function(){if($(window).scrollTop()>500&&$(".go_top").length>0){$(".go_top").fadeIn()}else{$(".go_top").fadeOut()}});
+
+if ($(".popnav_login").length > 1 || $("#login_user").length > 0) {
+	$.getJSON("ajax/ajax.php@ac=user&op=getwapuserinfo", function(d) {
+		if (d.uid != null) {
+			if($(".popnav_login").length>0){
+				$(".popnav_login").html('<p>欢迎回来，<a href="space/'+d.uid+'default.htm">'+d.username+'</a></p>');
+				}
+			if ($("#login_user").length > 0) {
+				$("#login_user").html('<a href="space/' + d.uid + 'default.htm"><span>Hi，' + d.username + "</span></a>");
+				$("#login_sign").text("签到有礼").attr("href", "signinwap/default.htm")
+			}
+		}
+	});
+}
+
+
+$("#wap_search_Btn").click(function(){$("#wap_searchform").submit()});$("#wap_searchform").submit(function(){if($("#wap_search").val().replace(/\s+/g,"").replace("　","")!=""){$("#wap_searchform").attr("action","search/recipe/"+$("#wap_search").val()+"/")}});
+
+var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-348109-10"]);_gaq.push(["_addOrganic","baidu","word"]);_gaq.push(["_addOrganic","soso","w"]);_gaq.push(["_addOrganic","youdao","q"]);_gaq.push(["_addOrganic","sogou","query"]);_gaq.push(["_addOrganic","360","q"]);_gaq.push(["_setDomainName",".meishichina.com"]);_gaq.push(["_setAllowHash",false]);_gaq.push(["_setAllowAnchor",true]);_gaq.push(["_trackPageview"]);_gaq.push(["_trackPageLoadTime"]);(function(){var ga=document.createElement("script");ga.type="text/javascript";ga.async=true;ga.src=("https:"==document.location.protocol?"../https@":"http://")+"stats.g.doubleclick.net/dc.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga,s)})();

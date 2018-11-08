@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>食堂一览</title>
+<meta name="keywords" content="最大的原创美食社区,美食天下" />
+<meta name="description" content="美食天下_最大的原创美食社区,美食天下手机版" />
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<meta name="apple-itunes-app" content="app-id=424182875, app-argument=">
+<link href="static.meishichina.com/v6/css/app/newwap/w_a.css?v=2016-04-30" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="static.meishichina.com/v6/favicon.ico"/>
+<link rel="apple-touch-icon" href="static.meishichina.com/v6/img/wap_a/fav.png" />
+
+<style type="text/css">
+
+
+#nav{
+  width:500px;
+  margin:0px auto;
+  position:fixed;/*固定作用*/
+  top:0px;
+
+  /*ie6下样式，加下划线表示只针对ie6 的hack */
+  _position:absolute;/* 把导航栏位置定义为绝对位置  关键*/
+  _top:expression(documentElement.scrollTop + "px"); /* 把导航栏位置放在浏览器垂直滚动条的顶端  关键 */
+  z-index:9999; /* 让导航栏浮在网页的高层位置，遇到flash和图片时候也能始终保持最外层 */
+  text-align:middle;
+}
+
+}
+</style>
+
+
+<script>
+var home_index='1';
+</script>
+<link type="text/css" rel="stylesheet" href="css/wap/base.css" />
+<script type="text/javascript">
+	    var user_name = "zfhy5";
+    var aGlobalBannerHeight = {};
+</script>
+<script type="text/javascript" src="include/cookies.js"></script>
+<script src="include/jquery-1.7.1.min.js" language="JavaScript" ></script>
+<script type="text/javascript" src="js/wap/nav.js?ver1"></script>
+<script type="text/javascript" src="js/wap/swipe.js?ver1"></script>
+<script type="text/javascript" src="js/wap/ajax_info.js?ver1"></script>
+<script type="text/javascript" src="js/wap/public.js?ver1"></script>
+
+<link type="text/css" rel="stylesheet" href="css/wap/web_frame.css??ver1" />
+<link type="text/css" rel="stylesheet" href="css/wap/change_module.css?ver1" />
+<link id="webSkinCss" type="text/css" rel="stylesheet" href="templates/wapother13/css/webskin.css?ver1" />
+<link id="webSkinCss" type="text/css" rel="stylesheet" href="templates/wapother13/skin_13/style.css?ver1" />
+<!--change_top_tpl-->
+
+<!-- <link type="text/css" rel="stylesheet" href="/css/wap/classStyle.css?ver1" > -->
+    <script type="text/javascript" src="js/wap/new_wap_public.js?ver1"></script>
+        <script type="text/javascript" src="js/wap/wapShare.js?ver1"></script>
+                                    <script type="text/javascript" src="js/wap/doc_json.js?ver1"></script>
+                            <link type="text/css" rel="stylesheet" href="css/wap/icomoon_style.css?ver1" />
+
+<script src="js/tj/model_banner.js?ver1" type="text/javascript"></script>
+<script type="text/javascript" src="js/wap/move_module.js?ver1"></script>
+<script src="../admin.dlszywz.com/ueditor/ueditor.parse.js"></script>
+<link type="text/css" rel="stylesheet" href="css/wap/show.css" />
+<link type="text/css" rel="stylesheet" href="css/VNew/animate.min.css" />
+
+
+</head>
+
+
+
+<body>
+
+<div class="header" id="nav" >
+
+
+
+<a class="header_a1" href="index.htm" title="返回" ><img src="images/wap/pro_login_run.png" height=30 alt="返回"/></a>
+
+<div class="wap_searchbox">
+<form action="http://m.meishichina.com/search/" method="post" id="wap_searchform" >
+<div>
+<input type="text" id="wap_search" placeholder="搜索食堂或菜品" >
+<a id="wap_search_Btn" href="javascript:void(0);">
+<span>搜索</span>
+</a>
+</div> 
+</form>
+</div>
+
+</div>
+
+
+
+
+
+
+<div class="popnav clear" id="popnav">
+<ul class="clear">
+<li><a title="首页" href="javascript:void(0)m.meishichina.com/"><i></i>首页</a></li>
+<li><a title="新闻" href="javascript:void(0)m.meishichina.com/recipe/"><i></i>新闻</a></li>
+<li><a title="食堂" href="javascript:void(0)m.meishichina.com/ingredient/"><i></i>食堂</a></li>
+<li><a title="珍选" href="javascript:void(0)m.meishichina.com/zhen/"><i></i>珍选</a></li>
+
+<li><a title="话题" href="javascript:void(0)m.meishichina.com/pai/"><i></i>话题</a></li>
+<li><a title="健康" href="javascript:void(0)m.meishichina.com/article/health/"><i></i>健康</a></li>
+<li><a title="菜单" href="javascript:void(0)m.meishichina.com/collect/"><i></i>菜单</a></li>
+<li><a title="魔方" href="javascript:void(0)m.meishichina.com/mofang/"><i></i>魔方</a></li>
+</ul>
+
+<div class="popnav_login clear mt10">
+<div><a href="javascript:void(0)m.meishichina.com/user/login/">登录</a></div>
+<div><a href="javascript:void(0)m.meishichina.com/user/register/">注册</a></div>
+</div>
+
+<div class="wap_searchbox">
+<form action="http://m.meishichina.com/search/" method="post" id="wap_searchform">
+<div>
+<input type="text" id="wap_search" placeholder="搜索食堂、菜品或论坛..." >
+<a id="wap_search_Btn" href="javascript:void(0);">
+<span>搜索</span>
+</a>
+</div>
+</form>
+</div>
+<div class="close">×</div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<div class="nav1">
+<a title="新闻" href="javascript:void(0)m.meishichina.com/recipe/">新闻</a>
+<a title="食堂" href="javascript:void(0)m.meishichina.com/ingredient/">食堂</a>
+<a title="话题" href="javascript:void(0)m.meishichina.com/pai/">话题</a>
+<a title="珍选" href="javascript:void(0)m.meishichina.com/zhen/">珍选</a>
+<a title="健康" href="javascript:void(0)m.meishichina.com/article/health/">健康</a>
+</div>
+
+-->
+
+
+<br><br>
+
+<div class="index_img" >    <!--滚动图片-->
+ <div id="slider"  class="swipe">
+   <div class="swipe-wrap">
+            						<div class="index_img">
+								<a href="javascript:void(0)m.meishichina.com/collect/60303/">
+													<img src="1.jpg" width="100%" alt="" /><span class="opa"></span></a></div>
+						<div class="index_img">
+									<a href="javascript:void(0)home.meishichina.com/watch.php?id=75">
+							<img src="http://i3.meishichina.com/attachment/magic/2016/04/26/20160426146164517643313.jpg" width="100%" alt="" /><span class="opa"></span></a></div>
+						<div class="index_img">
+								<a href="javascript:void(0)m.meishichina.com/collect/4820994/">
+													<img src="http://i3.meishichina.com/attachment/magic/2016/05/12/20160512146301788488213.jpg" width="100%" alt="" /><span class="opa"></span></a></div>
+						<div class="index_img">
+									<a href="javascript:void(0)m.meishichina.com/listing/4788481/">
+							<img src="http://i3.meishichina.com/attachment/magic/2016/05/12/20160512146301840760413.jpg" width="100%" alt="" /><span class="opa"></span></a></div>
+						<div class="index_img">
+								<a href="javascript:void(0)m.meishichina.com/collect/4810987/">
+													<img src="http://i3.meishichina.com/attachment/magic/2016/05/11/20160511146293666727413.jpg" width="100%" alt="" /><span class="opa"></span></a></div>
+							 
+    </div>
+  </div>
+
+<ul id="position">
+<li class="on"></li><li class=" "></li><li class=" "></li><li class=" "></li><li class=" "></li>
+</ul>
+</div>
+
+
+<div class="hot41">
+<ul>
+<li><a href="javascript:void(0)m.meishichina.com/recipe/all/elite/"><i></i>新菜品</a></li>
+<li><a href="javascript:void(0)m.meishichina.com/mofang/"><i></i>校内美食</a></li>
+<li><a href="javascript:void(0)m.meishichina.com/collect/"><i></i>菜单</a></li>
+<li><a href="javascript:void(0)m.meishichina.com/event/"><i></i>活动</a></li>
+<li><a href="javascript:void(0)m.meishichina.com/sign/"><i></i>签到</a></li>
+</ul>
+</div>
+
+
+
+<div class="s2">食堂一览</div>
+<div class="blist_c1 clear">
+<ul>
+	<li><div><a href="javascript:void(0)m.meishichina.com/recipe/category/jiachang/" title="桃园老食堂"><span><img   src="static.meishichina.com/v6/img/mobilepic/jiachangcai.jpg"></span>桃园老食堂</a></div></li>
+	<li><div><a href="javascript:void(0)m.meishichina.com/recipe/category/zaocan/" title="桃园教工餐厅"><span><img   src="static.meishichina.com/v6/img/mobilepic/zaocan.jpg#v=20151105"></span>桃园教工餐厅</a></div></li>
+	<li><div><a href="javascript:void(0)m.meishichina.com/hongbei/" title="桃园新食堂"><span><img   src="static.meishichina.com/v6/img/mobilepic/hongbei.jpg#v=20151105"></span>桃园新食堂</a></div></li>
+	<li><div><a href="javascript:void(0)m.meishichina.com/recipe/category/ertong/" title="梅园特色餐厅"><span><img   src="static.meishichina.com/v6/img/mobilepic/qinzi.jpg#v=20151105"></span>梅园特色餐厅</a></div></li>
+	<li><div><a href="javascript:void(0)m.meishichina.com/hongbei/" title="梅园食堂"><span><img   src="static.meishichina.com/v6/img/mobilepic/hongbei.jpg#v=20151105"></span>梅园食堂</a></div></li>
+	<li><div><a href="javascript:void(0)m.meishichina.com/recipe/category/ertong/" title="橘园食堂"><span><img   src="static.meishichina.com/v6/img/mobilepic/qinzi.jpg#v=20151105"></span>橘园食堂</a></div></li>
+	
+</ul>
+</div>
+
+<div class="blist_p1 mt20 clear">
+<ul>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/recai/" title="热菜">热菜</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/tanggeng/" title="汤羹">汤羹</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/zhushi/" title="主食">主食</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/xiaochi/" title="小吃">小吃</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/chuancai/" title="川菜">川菜</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/kuaishoucai/" title="面条">面条</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/xican/" title="西餐">西餐</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/chunji/" title="春季食谱">春季食谱</a></li>
+	<li><a href="javascript:void(0)m.meishichina.com/recipe/category/gaoyanzhi/" title="高颜值">高颜值</a></li>
+</ul>
+</div>
+
+
+
+<div class="ca">
+<a href="javascript:void(0)m.meishichina.com/recipe/">查看全部菜品分类</a>
+</div>
+
+<div class="ibox2 mt10">
+<a href="javascript:void(0)home.meishichina.com/ajax/ajax.php?ac=appcode&amp;op=getappurl"><img width="100%" src="cfs/img/main_01.jpg"></a>
+</div>
+
+
+<div class="s2">食堂新鲜食材</div>
+<div class="blist_c2 clear">
+		<ul>
+									<li><a href="javascript:void(0)m.meishichina.com/ingredient/niurou/" title="牛肉"><img   src="http://static.meishichina.com/v6/img/ingredientpic/niurou.jpg" width="50" height="50" />牛肉</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/muer/" title="木耳"><img   src="http://static.meishichina.com/v6/img/ingredientpic/muer.jpg" width="50" height="50" />木耳</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/xiangchun/" title="香椿"><img   src="http://static.meishichina.com/v6/img/ingredientpic/xiangchun.jpg" width="50" height="50" />香椿</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/paigu/" title="排骨"><img   src="http://static.meishichina.com/v6/img/ingredientpic/paigu2.jpg" width="50" height="50" />排骨</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/jicai/" title="荠菜"><img   src="http://static.meishichina.com/v6/img/ingredientpic/jicai.jpg" width="50" height="50" />荠菜</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/chunsun/" title="春笋"><img   src="http://static.meishichina.com/v6/img/ingredientpic/chunsun.jpg" width="50" height="50" />春笋</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/jiucai/" title="韭菜"><img   src="http://static.meishichina.com/v6/img/ingredientpic/jiucai.jpg" width="50" height="50" />韭菜</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/helandou/" title="荷兰豆"><img   src="http://static.meishichina.com/v6/img/ingredientpic/helandou.jpg" width="50" height="50" />荷兰豆</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/malantou/" title="马兰头"><img   src="http://static.meishichina.com/v6/img/ingredientpic/malantou.jpg" width="50" height="50" />马兰头</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/doumiao/" title="豆苗"><img   src="http://static.meishichina.com/v6/img/ingredientpic/doumiao.jpg" width="50" height="50" />豆苗</a></li>
+												<li><a href="javascript:void(0)m.meishichina.com/ingredient/caomei/" title="草莓"><img   src="http://static.meishichina.com/v6/img/ingredientpic/caomei.jpg" width="50" height="50" />草莓</a></li>
+															<li><a href="javascript:void(0)m.meishichina.com/ingredient/" title="全部食材"><img  src="static.meishichina.com/v6/img/wap_a/more.jpg" width="50" height="50" />全部食材</a></li>
+		</ul>
+	</div>
+
+
+
+<div class="s2_1">饮食健康</div>
+<div class="clist_1">
+	<ul>
+		<li><a href="javascript:void(0)m.meishichina.com/article/42972/"><span>十二种有毒家常菜</span></a></li>
+		<li><a href="javascript:void(0)m.meishichina.com/article/43875/"><span>别再吃这六种早餐了</span></a></li>
+		<li><a href="javascript:void(0)m.meishichina.com/article/115167/"><span>男人吃什么肉最补肾养精</span></a></li>
+		<li><a href="javascript:void(0)m.meishichina.com/article/29433/"><span>14种越吃越瘦的食物</span></a></li>
+		<li><a href="javascript:void(0)m.meishichina.com/article/71977/"><span>蔬菜十大致命错误吃法</span></a></li>
+	</ul>
+</div>
+<div class="ca">
+<a href="javascript:void(0)m.meishichina.com/article/health/">查看更多健康知识</a>
+</div>
+
+
+
+
+
+<!--
+<div class="ibox2 mt10">
+<a target="_blank" href="javascript:void(0)home.meishichina.com/watch.php?id=60">
+<img width="100%" src="static.meishichina.com/v6/img/wap_a/fapp2.jpg">
+</a>
+</div>
+-->
+
+
+   <!--文章详细页不显示底部-->
+        <div class="toolMenuBg" id="tool_menu_bg" ></div>
+    <div class="toolMenu" id="tool_menu" >
+      <menu class="toolBut q">
+                      <li id="toolHome" sorts="13" style=" width:20%;">
+                        <a id="index_link" href="index.htm"  >
+              <b class="icon" id="icon_1249473">
+                                <img src="images/wap/toolHome_icon.png" />
+                              </b>
+              <!-- <b class="icon" id="icon_12494731">
+                <img src="/images/wap/toolHome_icon.png" />
+              </b> -->
+              <strong>首页</strong>
+                          </a>
+          </li>
+                <li id="toolTel" sorts="12" style=" width:20%;">
+                        <a  href="canteen.htm"  >
+              <b class="icon" id="icon_1249470">
+                                <img src="images/wap/toolTel_icon.png" />
+                              </b>
+              <!-- <b class="icon" id="icon_12494701">
+                <img src="/images/wap/toolTel_icon.png" />
+              </b> -->
+              <strong>食堂</strong>
+                          </a>
+          </li>
+               
+                <li id="tootMessage" sorts="9" style=" width:20%;">
+                        <a  href="lanrenmb/wap_doc/style4.html"  >
+              <b class="icon" id="icon_1249475">
+                                <img src="images/wap/toolGuestbook_icon.png" />
+                              </b>
+              <!-- <b class="icon" id="icon_12494751">
+                <img src="/images/wap/toolGuestbook_icon.png" />
+              </b> -->
+              <strong>论坛</strong>
+                          </a>
+          </li>
+                <li id="toolMap" sorts="8" style=" width:20%;">
+                        <a  href="wap/map.php?username=zfhy5"  >
+              <b class="icon" id="icon_1249472">
+                                <img src="images/wap/toolMap_icon.png" />
+                              </b>
+              <!-- <b class="icon" id="icon_12494721">
+                <img src="/images/wap/toolMap_icon.png" />
+              </b> -->
+              <strong>发现</strong>
+                          </a>
+          </li>
+                <li id="toolMember" sorts="6" style=" width:20%;">
+                        <a  href="dom/denglu.php?username=zfhy5&wap=1"  >
+              <b class="icon" id="icon_1249474">
+                                <img src="images/wap/toolMember_icon.png" />
+                              </b>
+              <!-- <b class="icon" id="icon_12494741">
+                <img src="/images/wap/toolMember_icon.png" />
+              </b> -->
+              <strong>我的</strong>
+                          </a>
+          </li>
+                  </menu>
+    </div>
+       
+
+
+<script src="static.meishichina.com/res/web/scripts/jquery.min.js"></script>
+<script src="static.meishichina.com/v6/js/app/newWap/a/w.js?v=2016-03-28" type="text/javascript" ></script>
+
+
+
+
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fb9cd9dcdda23cee0c7357db9be24acb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+<script src="static.meishichina.com/res/wap/js/swipe-2.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var slider=new Swipe(document.getElementById('slider'),{startSlide:0,auto:4000,speed:300,callback:function(index,elem){var i=bullets.length;while(i--){bullets[i].className=' ';}
+bullets[index].className='on';}});var bullets=document.getElementById('position').getElementsByTagName('li');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+/*菜单详情页js操作
+* wgl 2014-6-25
+*/
+/*设置用户id*/
+var supe_uid = '';
+//异步获取数据
+var collectid = $("#collect_id").val();
+var islik=0;
+var isfav=0;
+$.get(msc.tools.getAjaxUrl({
+		ac: "user",
+		op: "getcollectloadinfo"
+	}),{'id':collectid},function(d){
+	//var data=eval('('+d+')');
+	
+/*{"supe_uid":"451548","viewnum":"10368604","likenum":"67","ratnum":"468","islikecount":1,"rc":0}
+"supe_uid":当前用户uid
+"viewnum":菜单阅读数
+"likenum":菜单喜欢数
+"ratnum":菜单收藏数
+"islikecount":当前用户是否喜欢0，喜欢1
+"rc":当前用户是否收藏0，收藏1
+*/
+
+supe_uid=d.supe_uid;
+  $("#collect_likenum span").text(d.likenum);
+  $("#collect_viewnum span").text(d.viewnum);
+  if(d.islikecount==1){
+	  $("#collect_likenum").addClass('on');
+	  islik =1;
+  }
+  if(d.rc>0){
+	  $("#collect_colnum").addClass('on').html('已收藏<span>'+d.ratnum+'</span>');
+	  isfav=1;
+  }
+  else
+	  $("#collect_colnum span").text(d.ratnum);
+	
+msc.tools.floatBox(2,islik,isfav); //左侧悬浮
+},"json");
+
+//百度分享
+window._bd_share_config = {
+	"common": {
+		"bdSnsKey": {
+			"tsina": "3258795188",
+			"tqq": "208157"
+		},
+		"bdUrl": "../m.meishichina.com/collect/"+$("#collect_id").val()+"/",
+		"bdText": "我在美食天下发现一个不错的菜单_"+$("#collect_title").html()+"，收录的都是我喜欢的菜谱，晚上要回家做给家人吃！",
+		"bdMini": "2",
+		"bdMiniList": false,
+		"bdPic": $("#collect_fcover").val(),
+		"bdStyle": "0",
+		"bdSize": "16",
+		"bdWbuid": "1642625033"
+	},
+	"share": {}
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '../bdimg.share.baidu.com/static/api/js/share.js@v=89860593.js@cdnversion=' + ~ ( - new Date() / 36e5)];
+
+//var islik = /on/.test($("#collect_likenum").attr("class"))?1:0;
+//var isfav = /on/.test($("#collect_colnum").attr("class"))?1:0;
+//
+//msc.tools.floatBox(2,islik,isfav); //左侧悬浮
+
+$("#collect_likenum").click(function(){  //喜欢
+if(supe_uid==''||supe_uid==0){
+msc.user.login();
+return false;
+}
+
+if (/on/.test($(this).attr('class')))
+	 return false;
+ else{
+
+var id=$("#collect_id").val();
+var title=$("#collect_title").html();
+var tuid=$("#collect_tuid").val();
+var tuname=$("#collect_tuname").html();
+
+
+$.ajax({
+			url: "source/ajax_tools.php@op=like&type=collect",
+			type: "GET",
+			data: "id=" + id + "&title=" + title + "&tuid=" + tuid + "&tuname=" + tuname,
+			success: function(data) {
+				$("#collect_likenum").addClass('on');
+				$("#J_floatFav a.J_lik").addClass('on');
+				$("#collect_likenum span").html(parseInt($("#collect_likenum span").html()) + 1);
+				return true;
+			},
+			error: function(data) {
+				return false;
+			}
+		});
+
+
+ }
+
+
+});
+
+$("#collect_colnum").click(function(){ //收藏
+if(supe_uid==''||supe_uid==0){
+msc.user.login();
+return false;
+}
+
+if (/on/.test($(this).attr('class')))
+	 return false;
+ else{
+  var id=$("#collect_id").val();
+var title=$("#collect_title").html();
+var tuid=$("#collect_tuid").val();
+var tuname=$("#collect_tuname").html();
+
+
+
+
+
+$.get("ajax/ajax.php@ac=collect&op=fav_collect",{'cid':id,'uid':tuid},function(d){
+
+
+if(d.error==1){
+
+				$("#collect_colnum").addClass('on');
+				$("#J_floatFav a.J_fav").addClass('on');
+				$("#collect_colnum span").html(parseInt($("#collect_colnum span").html()) + 1);
+}
+else
+msc.ui.dialog.error("操作失败请重试！")
+
+ 
+
+
+},"json");
+
+
+
+
+
+ }
+
+});
+
+//右侧最下广告
+	$(window).scroll(function() {
+		var omng = $(".keyshow").eq(0).offset();
+		var jtl = $("#smnbk").offset();
+		if (omng.top < $(document).scrollTop() + 40) {
+			$(".keyshow").css({
+				position: "fixed",
+				top: 40,
+				margin: 0,
+				left: omng.left
+			});
+		} else if (omng.top < jtl.top + 170) {
+			$(".keyshow").css({
+				position: "static",
+				margin: "20px 0 0 0"
+			});
+		}
+	});
+
+(function($, msc){
+
+var $list = $("#J_list");
+
+/// 从菜单中移除菜谱、
+$list.on("click", "a.J_collect_remove", function() {
+var that = this;
+var id=$("#collect_id").val();
+var mid=$(this).attr('data-id');
+msc.ui.dialog.alert("确定要将该菜谱从菜单中移除么?",function(){
+$.post(msc.tools.getAjaxUrl({
+ac:"collect",
+op:"del_content_from_collect" 
+}),{id:id,mid:mid},function(result){
+if(result.error==0){
+msc.ui.dialog.success("已成功移除");
+
+								if($list.find("li").length < 2){
+		                            return setTimeout(function(){
+		                                location.reload(true);
+		                            }, 500);
+		                        } else {
+		                            $(that).closest("li").slideUp(200, function(){
+		                                $(this).remove();
+		                            });
+		                        }
+}
+else
+msc.ui.dialog.error("出现错误，请重试");
+return false;
+			},"json");	
+
+},$.noop);
+});
+					 
+
+}(jQuery, msc));
+
+
+//自己菜单:编辑菜单中的菜谱，权重、评语
+
+$(".J_collect_edit").click(function() {
+var mid=$(this).attr("data-id");
+var id=$("#collect_id").val();
+var collect_title=$("#collect_title").html();
+	var content = '',mycollect_info='',weight=1;
+	$.get(msc.tools.getAjaxUrl({
+		ac: "collect",
+		op: "get_unoteweight_by_id"
+	}), {
+		id:id,mid:mid
+	},
+	function(d) {
+		if (d.error == 0) {
+			weight=d.weight;
+			if(d.unote=='')
+			mycollect_info='<textarea class="" id="mycollect_info">这个菜谱怎么样？说说你的看法</textarea>';
+			else
+			mycollect_info='<textarea class="color_5b" id="mycollect_info">'+d.unote+'</textarea>';
+
+			content = '<div id="addtocollect"><div class="line">所属菜单：&nbsp;'+collect_title+'</div><div class="line">设置排序：&nbsp;<select id="mycollect_order" data-width="120"><option value="">请选择</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select><span class="gay">1-9,数字越大越靠前</span></div><div class="line">评论菜谱：&nbsp;'+mycollect_info+'</div></div>';
+		
+		
+		msc.ui.dialog({
+		content: [content],
+		lock: true,
+		width: '400px',
+		height: '200px',
+		title: "编辑",
+		button: [{
+			value: "确定",
+			highlight: !0,
+			callback: function() {
+				var self = this;
+				var unote=$("#mycollect_info").val(),weight=$("#mycollect_order").val();
+				
+				if(weight=='')
+					weight=1;
+				if (!/color_5b/.test($("#mycollect_info").attr('class')))
+					unote='';
+
+				$.get(msc.tools.getAjaxUrl({
+		ac: "collect",
+		op: "update_unoteweight_by_id"
+	}), {
+		id:id,mid:mid,unote:unote,weight:weight
+	},function(d) {
+		if(d.error==0){
+			msc.ui.dialog.loading();
+				setTimeout(function() {
+					msc.ui.dialog.loading.close();
+					msc.ui.dialog.success("编辑成功",
+					function() {
+						self && self.close();
+						location.reload(true);
+					});
+				},
+				1000)
+
+		}else{
+			msc.ui.dialog.error("出现异常，请重试");
+		}
+		
+		},"json");
+
+
+				 return false;
+			}
+		}],
+		cancel: function() {
+			return true;
+		},
+		initialize: function() {
+			msc.ui.select({
+				id: "#mycollect_order",
+				width: 80,
+				defaultValue: true
+			});
+			$("#mycollect_order").val(weight).change();
+			
+		}
+	});
+		
+	
+		
+		}else{
+msc.ui.dialog.error("发生异常，请重试");
+		}
+	},
+	"json");
+
+
+	
+});
+
+//加入菜单评语
+$("body").on("focus","#mycollect_info",function(){
+if (!/color_5b/.test($(this).attr('class')))
+$(this).html("").val("").addClass('color_5b');
+});
+
+$("body").on("blur","#mycollect_info",function(){
+if($(this).val()=='')
+$(this).val('这个菜谱怎么样？说说你的看法').removeClass('color_5b');
+});
+
+//左侧悬浮
+$("body").on("click","#J_floatFav li a",function(){
+if($(this).attr("class")=='J_lik'){
+$("#collect_likenum").click();
+}
+else if($(this).attr("class")=='J_fav'){
+$("#collect_colnum").click();
+}
+else if($(this).attr("class")=='J_l1'){
+document.getElementById("bds_tsina").click(); 
+}else if($(this).attr("class")=='J_l2'){
+document.getElementById("bds_qzone").click();
+}else if($(this).attr("class")=='J_l3'){
+document.getElementById("bds_tqq").click();
+}
+else{
+return false;
+}
+});
+
+//简介展开
+if($("#collect_txt").length!=0){
+var collect_txt_h =$("#collect_txt").height();
+var collect_txt1_h =$("#collect_txt1").height();
+if(collect_txt1_h>collect_txt_h)
+$("#collect_txt_show").show();
+}
+$("#collect_txt_show a").click(function(){
+	var c1=$("#collect_txt");
+if (/collect_txt_all/.test(c1.attr("class"))) {
+            c1.removeClass("collect_txt_all");
+			$(this).text('展开');
+        } else {
+            c1.addClass("collect_txt_all");
+			$(this).text('收起');
+        }	
+});

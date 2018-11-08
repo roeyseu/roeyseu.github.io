@@ -1,0 +1,139 @@
+(function($, window, msc) {
+
+	var box = function(type,lik,fav) {
+/*
+type: 1：菜谱；2：菜单 3:食材 4:随拍
+lik: 1：已喜欢 0：没喜欢过
+fav: 1：已收藏 0：没收藏过
+*/
+
+		return Box._create(type,lik,fav);
+	}
+	var Box = {
+
+		_pos: {
+			_x: 0,
+			_y: 0
+		},
+		_create: function(type,lik,fav) {
+			var self = this;
+			var Boxtpl, lik_on='',fav_on='';
+			if(lik==1)
+				lik_on=' on';
+			if(fav==1)
+				fav_on=' on';
+			$('head').append('<link rel="stylesheet" type="text/css" href="../static.meishichina.com/v6/css/lib/floatBox.css">');
+			if(type==1){
+Boxtpl = '<ul class="floatFav J_floatFav" id="J_floatFav">' +
+		'<li class="lik"><a class="J_lik'+lik_on+'" href="javascript:void(0);" title="喜欢"></a></li>' +
+		'<li class="fav"><a class="J_fav'+fav_on+'" href="javascript:void(0);" title="收藏"></a></li>' +
+		'<li class="line"><a class="J_line" href="javascript:void(0);"  title="加入菜单"></a></li>' +
+		'<li class="shar"><a class="J_shar" href="javascript:void(0);" title="分享"></a><p class="shar_box J_sharBox"><a href="javascript:void(0);" class="J_l1"  title="分享到新浪微博"></a><a href="javascript:void(0);" class="J_l2" title="分享到QQ空间"></a><a href="javascript:void(0);" class="J_l3" title="分享到腾讯微博 "></a></p></li>' +
+		'<li class="say last"><a class="J_say" href="#comment"  title="评论"></a></li>' +
+		'</ul>';}else if(type==2){
+  Boxtpl = '<ul class="floatFav J_floatFav" id="J_floatFav">' +
+		'<li class="lik"><a class="J_lik'+lik_on+'" href="javascript:void(0);" title="喜欢"></a></li>' +
+		'<li class="fav"><a class="J_fav'+fav_on+'" href="javascript:void(0);" title="收藏"></a></li>' +
+		'<li class="shar last"><a class="J_shar" href="javascript:void(0);" title="分享"></a><p class="shar_box J_sharBox"><a href="javascript:void(0);" class="J_l1"  title="分享到新浪微博"></a><a href="javascript:void(0);" class="J_l2" title="分享到QQ空间"></a><a href="javascript:void(0);" class="J_l3" title="分享到腾讯微博 "></a></p></li>' +
+		'</ul>';
+} else if(type==3){
+  Boxtpl = '<ul class="floatFav J_floatFav" id="J_floatFav">' +
+		'<li class="lik"><a class="J_lik'+lik_on+'" href="javascript:void(0);" title="喜欢"></a></li>' +
+		'<li class="fav" style="display:none"><a class="J_fav'+fav_on+'" href="javascript:void(0);" title="收藏"></a></li>' +
+		'<li class="shar last"><a class="J_shar" href="javascript:void(0);" title="分享"></a><p class="shar_box J_sharBox"><a href="javascript:void(0);" class="J_l1"  title="分享到新浪微博"></a><a href="javascript:void(0);" class="J_l2" title="分享到QQ空间"></a><a href="javascript:void(0);" class="J_l3" title="分享到腾讯微博 "></a></p></li>' +
+		'</ul>';
+}  else if(type==4){
+  Boxtpl = '<ul class="floatFav J_floatFav" id="J_floatFav">' +
+		'<li class="lik"><a class="J_lik'+lik_on+'" href="javascript:void(0);" title="喜欢"></a></li>' +
+	  '<li class="fav"><a class="J_fav'+fav_on+'" href="javascript:void(0);" title="收藏"></a></li>' +
+	  '<li class="say last"><a class="J_say" href="#comment"  title="评论"></a></li>' +
+		'<li class="shar last"><a class="J_shar" href="javascript:void(0);" title="分享"></a><p class="shar_box J_sharBox"><a href="javascript:void(0);" class="J_l1"  title="分享到新浪微博"></a><a href="javascript:void(0);" class="J_l2" title="分享到QQ空间"></a><a href="javascript:void(0);" class="J_l3" title="分享到腾讯微博 "></a></p></li>' +
+		'</ul>';
+}
+
+
+else{
+Boxtpl='<ul class="floatFav J_floatFav" id="J_floatFav"></ul>';
+}
+			
+			$("#floatBox").append(Boxtpl);
+
+
+			self._postion(type); //添加初次加载的位置
+			$(".J_floatFav").on("mouseenter", ".J_shar", function() {
+				var th = $(this);
+				if (th.hasClass('J_shar')) {
+					self.sharboxEvent(th, 0);
+				}
+			});
+			$(".J_floatFav .shar").on("mouseleave", function() {
+				var th = $(this);
+				self.sharboxEvent(th, 1);
+
+			});
+
+
+
+		},
+		sharboxEvent: function(th, num) {
+
+			if (num == 0) {
+
+				th.parent().addClass('on').find(".J_sharBox").css("display", "block")
+			} else if (num == 1) {
+
+				th.removeClass('on').find(".J_sharBox").css("display", "none")
+			}
+
+
+		},
+		_postion: function(type) {
+			var self = this;
+	
+
+			window.onscroll = function() {
+				self.bodyScroll(type);
+			};
+
+
+		},
+		bodyScroll: function(type) {
+
+
+			 
+			if ($('#floatBox').length > 0&&(window.XMLHttpRequest)) {
+			var omng = $('#floatBox').offset();
+			var jtl = $('.nav_wrap:eq(0)').offset();
+			var jtop=145;
+			var top='65px';
+			if(type==3){
+				jtop=465;top='35px';
+			}
+			if(type==4){
+				top='-1px';
+			}
+			if (omng.top < $(document).scrollTop() + 45) {
+				$('#floatBox').css({
+					position: 'fixed',
+					top: 45,
+					margin: 0,
+					left: omng.left
+				})
+			} else if (omng.top < jtl.top + jtop) {
+				$("#floatBox").css({
+					position: 'absolute',
+					top:top,
+					left:'-67px'
+				})
+			}
+		}
+
+
+		}
+	}
+	
+
+	msc.tools["floatBox"] = box;
+
+
+})(jQuery, window, window.msc)
